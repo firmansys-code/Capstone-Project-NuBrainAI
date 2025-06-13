@@ -1,4 +1,5 @@
 import streamlit as st
+import gdown
 import numpy as np
 import pickle
 import cv2
@@ -15,10 +16,18 @@ st.query_params.clear()
 # Load model and scaler
 @st.cache_resource
 def load_model():
-    with open("knn_brain_model_final.pkl", "rb") as f:
+    # Download model dan scaler dari Google Drive
+    model_url = "https://drive.google.com/uc?id=YOUR_MODEL_ID"
+    scaler_url = "https://drive.google.com/uc?id=YOUR_SCALER_ID"
+
+    gdown.download(model_url, "model.pkl", quiet=False)
+    gdown.download(scaler_url, "scaler.pkl", quiet=False)
+
+    with open("model.pkl", "rb") as f:
         knn = pickle.load(f)
-    with open("knn_scaler_final.pkl", "rb") as f:
+    with open("scaler.pkl", "rb") as f:
         scaler = pickle.load(f)
+
     base_model = EfficientNetB0(include_top=False, weights='imagenet', input_shape=(224, 224, 3))
     feature_model = Model(inputs=base_model.input, outputs=tf.keras.layers.GlobalAveragePooling2D()(base_model.output))
     return knn, scaler, feature_model

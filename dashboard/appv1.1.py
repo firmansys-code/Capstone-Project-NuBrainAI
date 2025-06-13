@@ -2,7 +2,7 @@ import streamlit as st
 import gdown
 import numpy as np
 import pickle
-import cv2
+from PIL import Image
 import tensorflow as tf
 from tensorflow.keras.applications.efficientnet import EfficientNetB0, preprocess_input
 from tensorflow.keras.models import Model

@@ -4,6 +4,6 @@ numpy
 opencv-python==4.8.1.78
 scikit-learn
 joblib
-tensorflow==2.15.0
+tensorflow==2.11.0
 tensorflow-hub
 gdown

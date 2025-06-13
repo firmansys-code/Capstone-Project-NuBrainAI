@@ -29,7 +29,7 @@ st.markdown("---")
 
 uploaded = st.file_uploader("Upload gambar MRI", type=["jpg", "jpeg", "png"])
 if uploaded is not None:
-    img = Image.open(uploaded).convert("L").resize((64, 64))  # grayscale resize
+    img = Image.open(uploaded).convert("L").resize((224, 224))  
     img_array = np.array(img).flatten().reshape(1, -1).astype(np.float32)
     img_scaled = scaler.transform(img_array)
     prediction = knn.predict(img_scaled)[0]

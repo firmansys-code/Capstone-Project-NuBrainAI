@@ -17,8 +17,8 @@ st.query_params.clear()
 @st.cache_resource
 def load_model():
     # Download model dan scaler dari Google Drive
-    model_url = "https://drive.google.com/file/d/1kY4qIcs_Jg0Eq4ZpESlMZU5jpd2b9o6U/view?usp=drive_link"
-    scaler_url = "https://drive.google.com/file/d/1f6YrFnsntLv-S2gG2RS_zUNwZojDkX-k/view?usp=drive_link"
+    model_url = "https://drive.google.com/file/d/1kY4qIcs_Jg0Eq4ZpESlMZU5jpd2b9o6U/view?usp=sharing"
+    scaler_url = "https://drive.google.com/file/d/1f6YrFnsntLv-S2gG2RS_zUNwZojDkX-k/view?usp=sharing"
 
     gdown.download(model_url, "model.pkl", quiet=False)
     gdown.download(scaler_url, "scaler.pkl", quiet=False)

@@ -163,14 +163,15 @@ elif page == "tes":
     uploaded = st.file_uploader("Upload gambar MRI", type=["jpg", "jpeg", "png"])
 
     if uploaded is not None:
-        file_bytes = np.asarray(bytearray(uploaded.read()), dtype=np.uint8)
-        img = cv2.imdecode(file_bytes, 1)
-        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        st.image(img_rgb, caption="Gambar yang Diupload", width=300)
+        from PIL import Image
 
-        # Preprocessing
-        img_resized = cv2.resize(img_rgb, (224, 224))
-        img_array = preprocess_input(img_resized.astype(np.float32))
+        # Load image via PIL and preprocess
+        img = Image.open(uploaded).convert("RGB")
+        img_resized = img.resize((224, 224))
+        img_array = np.array(img_resized).astype(np.float32)
+        img_array = preprocess_input(img_array)
+
+        st.image(img, caption="Gambar yang Diupload", width=300)
         img_array = np.expand_dims(img_array, axis=0)
 
         # Feature extraction and prediction

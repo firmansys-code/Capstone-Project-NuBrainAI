@@ -1,6 +1,5 @@
-streamlit
-numpy
+tensorflow==2.19.0
 scikit-learn
-joblib
-gdown
-Pillow
+pillow
+numpy
+streamlit

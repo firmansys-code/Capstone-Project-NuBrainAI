@@ -10,8 +10,8 @@ st.set_page_config(page_title="MRI Brain Tumor Classifier", layout="wide", page_
 # Load model and label encoder (cached)
 @st.cache_resource
 def load_model_and_encoder():
-    model = tf.keras.models.load_model("dashboard/end_to_end_model.h5")
-    with open("dashboard/label_encoder.pkl", "rb") as f:
+    model = tf.keras.models.load_model("end_to_end_model.h5")
+    with open("label_encoder.pkl", "rb") as f:
         le = pickle.load(f)
     return model, le
 
@@ -53,6 +53,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown('<h1 style="text-align: center; font-size: 3rem;">🧠 NuBrain AI</h1>', unsafe_allow_html=True)
+
 # Navigation state
 if 'page' not in st.session_state:
     st.session_state.page = "beranda"
@@ -71,14 +73,14 @@ with col4:
     if st.button("👨‍💻 About"):
         st.session_state.page = "about"
 
+
 page = st.session_state.page
 
 # Halaman: Beranda
 if page == "beranda":
-    st.markdown('<h1 style="text-align: center;">🧠 NuBrain Tumor</h1>', unsafe_allow_html=True)
     st.write("""
     ### 📌 Tentang Aplikasi
-    **NuBrain** adalah aplikasi berbasis web yang menggunakan model AI untuk membantu mendeteksi tumor otak melalui citra MRI. Aplikasi ini dikembangkan untuk mempermudah pemeriksaan awal secara cepat, informatif, dan mudah digunakan oleh masyarakat umum maupun tenaga medis.
+    **NuBrain AI** adalah aplikasi berbasis web yang menggunakan model AI untuk membantu mendeteksi tumor otak melalui citra MRI. Aplikasi ini dikembangkan untuk mempermudah pemeriksaan awal secara cepat, informatif, dan mudah digunakan oleh masyarakat umum maupun tenaga medis.
 
     ### 🧾 Cara Menggunakan
     1. Buka menu **Tes MRI**.
@@ -150,6 +152,6 @@ elif page == "about":
 # Sticky Footer
 st.markdown("""
 <div class="footer" style="position:fixed;bottom:0;width:100%;text-align:center;color:gray;">
-© 2025 - NuBrain
+© 2025 - NuBrain AI
 </div>
 """, unsafe_allow_html=True)

@@ -10,8 +10,8 @@ st.set_page_config(page_title="MRI Brain Tumor Classifier", layout="wide", page_
 # Load model and label encoder (cached)
 @st.cache_resource
 def load_model_and_encoder():
-    model = tf.keras.models.load_model("end_to_end_model.h5")
-    with open("label_encoder.pkl", "rb") as f:
+    model = tf.keras.models.load_model("dashboard/end_to_end_model.h5")
+    with open("dashboard/label_encoder.pkl", "rb") as f:
         le = pickle.load(f)
     return model, le
 
